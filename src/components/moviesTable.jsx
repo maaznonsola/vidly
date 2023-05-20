@@ -12,17 +12,20 @@ class MoviesTable extends Component {
     {
       key: "like",
       content: (movie) => (
-        <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
+        <Like
+          liked={movie.liked}
+          onLikeToggle={() => this.props.onLike(movie)}
+        />
       ),
     },
     {
       key: "delete",
       content: (movie) => (
         <button
-          onClick={() => this.props.onDelete(movie._id)}
+          onClick={() => this.props.onDelete(movie)}
           className="btn btn-sm btn-danger"
         >
-          Delete this row
+          Delete
         </button>
       ),
     },
