@@ -19,14 +19,7 @@ class Movies extends Component {
     const genres = [{_id: "", name: "All Genres"}, ...getGenres()];
     this.setState({movies: getMovies(), genres});
   }
-  handleSort = (path) => {
-    const sortColumn = {...this.state.sortColumn};
-    if (sortColumn.path === path) {
-      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
-    } else {
-      sortColumn.path = path;
-      sortColumn.order = "asc";
-    }
+  handleSort = (sortColumn) => {
     this.setState({sortColumn});
   };
   handleDelete = (movie) => {
@@ -79,44 +72,9 @@ class Movies extends Component {
         </div>
         <div className="col">
           <p>Showing {filtered.length} movies in the databses.</p>
-          {/* <table className="table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Stock</th>
-                <th>Rate</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {movies.map((movie) => (
-                <tr key={movie._id}>
-                  <td>{movie.title}</td>
-                  <td>{movie.genre.name}</td>
-                  <td>{movie.numberInStock}</td>
-                  <td>{movie.dailyRentalRate}</td>
-                  <td>
-                    <Like
-                      liked={movie.liked}
-                      onLikeToggle={() => this.handleLike(movie)}
-                    />
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => this.handleDelete(movie)}
-                      className="btn btn-danger btn-sm"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table> */}
           <MoviesTable
             movies={movies}
+            sortColumn={sortColumn}
             onSort={this.handleSort}
             onLike={this.handleLike}
             onDelete={this.handleDelete}
