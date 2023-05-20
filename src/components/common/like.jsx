@@ -9,7 +9,7 @@ class Like extends Component {
     return (
       <i
         className={classes}
-        onClick={this.props.onLikeToggle}
+        onClick={this.props.onClick}
         aria-hidden="true"
         style={{cursor: "pointer"}}
       ></i>
