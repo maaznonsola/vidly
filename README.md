@@ -73,3 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 npm i lodash@4.17.10 - for lodash
 npm i prop-types@15.6.2 - for type checking with propTypes
 npm i react-router-dom@4.3.1 - for react router dom
+npm i joi-browser@13.4 - for JOI validation library
