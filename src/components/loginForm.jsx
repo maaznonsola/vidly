@@ -1,15 +1,21 @@
 import React, {Component} from "react";
 
 class LoginForm extends Component {
-  username = React.createRef();
-  // We can use autoFocus instead of refs
-  // componentDidMount() {
-  //   this.username.current.focus();
-  // }
+  state = {
+    account: {
+      username: "",
+      password: "",
+    },
+  };
   handleSubmit = (event) => {
     event.preventDefault();
     const username = this.username.current.value;
     console.log("Submitted");
+  };
+  handleChange = (event) => {
+    const account = {...this.state.account};
+    account.username = event.currentTarget.value;
+    this.setState({account});
   };
 
   render() {
@@ -20,11 +26,12 @@ class LoginForm extends Component {
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
-              autoFocus
-              ref={this.username}
               type="text"
               id="username"
               className="form-control"
+              autoFocus
+              value={this.state.account.username}
+              onChange={this.handleChange}
             />
           </div>
           <div className="form-group">
