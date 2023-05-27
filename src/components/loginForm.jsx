@@ -9,7 +9,8 @@ class LoginForm extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    const username = this.username.current.value;
+
+    // Call the server
     console.log("Submitted");
   };
   handleChange = (event) => {
