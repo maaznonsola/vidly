@@ -3,12 +3,16 @@ import config from "../config.json";
 
 const apiEndpoint = config.apiUrl + "/movies";
 
+function movieUrl(id) {
+  return `${apiEndpoint}/${id}`;
+}
+
 export function getMovies() {
   return http.get(apiEndpoint);
 }
 
 export function getMovie(id) {
-  return http.get(apiEndpoint + "/" + id);
+  return http.get(movieUrl(id));
 }
 
 export async function saveMovie(movie) {
@@ -17,9 +21,9 @@ export async function saveMovie(movie) {
     delete body._id;
     return http.put(apiEndpoint + "/" + movie._id, body);
   }
-  return http.post(apiEndpoint, movie);
+  return http.post(movieUrl(movie._id), movie);
 }
 
 export function deleteMovie(id) {
-  return http.delete(apiEndpoint + "/" + id);
+  return http.delete(movieUrl(id));
 }
