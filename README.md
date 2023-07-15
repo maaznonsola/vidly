@@ -76,3 +76,9 @@ npm i react-router-dom@4.3.1 - for react router dom
 npm i joi-browser@13.4 - for JOI validation library
 npm i axios@0.18.0 - API
 npm i react-toastify@4.1.0 - toast notification
+
+------Process to connect Backend with Frontend------
+
+1. open cmd>type "mongod" -It will listen to port such as 27017
+2. open mongod compass (Find C:\Program Files\MongoDB...)>connect to 27017
+3. open vidly-api-node folder>in cmd type "node index.js"
