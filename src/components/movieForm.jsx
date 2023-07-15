@@ -4,20 +4,6 @@ import Form from "./common/form";
 import {getMovie, saveMovie} from "../services/movieService";
 import {getGenres} from "../services/genreService";
 
-// const MovieForm = ({match, history}) => {
-//   return (
-//     <div>
-//       <h1>Movie Form {match.params.id}</h1>
-//       <button
-//         className="btn btn-primary"
-//         onClick={() => history.push("/movies")}
-//       >
-//         Save
-//       </button>
-//     </div>
-//   );
-// };
-
 class MovieForm extends Form {
   state = {
     data: {
@@ -46,23 +32,27 @@ class MovieForm extends Form {
       .label("Daily Rental Rate"),
   };
 
-  async componentDidMount() {
+  async populateGenres() {
     const {data: genres} = await getGenres();
     this.setState({genres});
+  }
 
-    const movieId = this.props.match.params.id;
-    if (movieId === "new") return;
-
+  async populateMovie() {
     try {
+      const movieId = this.props.match.params.id;
+      if (movieId === "new") return;
+
       const {data: movie} = await getMovie(movieId);
       this.setState({data: this.mapToViewModel(movie)});
     } catch (error) {
       if (error.response && error.response.status === 404)
         this.props.history.replace("/not-found");
     }
-    // if (!movie) return this.props.history.replace("/not-found");
+  }
 
-    // this.setState({data: this.mapToViewModel(movie)});
+  async componentDidMount() {
+    await this.populateGenres();
+    await this.populateMovie();
   }
 
   mapToViewModel(movie) {
