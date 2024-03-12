@@ -21,7 +21,8 @@ export async function saveMovie(movie) {
     delete body._id;
     return http.put(apiEndpoint + "/" + movie._id, body);
   }
-  return http.post(movieUrl(movie._id), movie);
+  /* return http.post(movieUrl(movie._id), movie); */
+  return http.post(apiEndpoint, movie);
 }
 
 export function deleteMovie(id) {
